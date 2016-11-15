@@ -19,7 +19,7 @@ function getColor(c){
 
 		}else{
 			for( var i = 0; i < hex.length; i++ ) {
-				if( c == String.fromCharCode(i+97)){
+				if( c.toLowerCase() == String.fromCharCode(i+97)){
 					return hex[i];
 					break;
 				}
@@ -103,7 +103,7 @@ function colorString(e){
 	if(e.keyCode == 13){
 		color_code.innerHTML = "";
 		for(var i = 0; i < e.target.value.length; i++){
-			color_code.insertAdjacentHTML("beforeend", '<span>' + i%2 + '</span>');
+			color_code.insertAdjacentHTML("beforeend", '<span>' + i + '</span>');
 			color_code.children[i].style.backgroundColor = getColor(e.target.value[i]);
 		}
 	}
@@ -116,22 +116,40 @@ color_input.addEventListener('keyup', colorString);
 //------------------------
 var abc = document.getElementById("abc");
 var ceasar = document.getElementById("ceasar");
-var ceasar_input = document.getElementById("ceasar-input");
-
+var ceasar_range = document.getElementById("ceasar-range");
+var ceasar_usertext = document.getElementById("ceasar-user-text");
+var ceasar_output = document.getElementById("ceasar-output");
+var ceasar_decrypt = document.getElementById("ceasar-decrypt");
 //abc seq
 function ceasars(e) {
-	if ( e.keyCode == 13 ) {
-		var a = e.target.value % 26;
-		ceasar.innerHTML = "";
-		for (var i = 0; i < 26; i++) {
-			if ( a >= 26 ) a -= 26; 
-			ceasar.insertAdjacentHTML('beforeend', '<span>' + String.fromCharCode(a+65) + '</span>');
-			a++;
-		}
+	var a = e.target.value % 26;
+	ceasar.innerHTML = "";
+	for (var i = 0; i < 26; i++) {
+		if ( a >= 26 ) a -= 26; 
+		ceasar.insertAdjacentHTML('beforeend', '<span>' + String.fromCharCode(a+65) + '</span>');
+		a++;
 	}
 }
-ceasar_input.addEventListener("keyup", ceasars);
+ceasar_range.addEventListener("change", ceasars);
 
+function charpos(z){
+	return z.charCodeAt(0) - 65;
+}
+function ceasarde(text, push, decode) {
+	var push = push % 26;
+	var i = 0;
+	return text.toUpperCase().replace(/[A-Z]/g, function(a) {
+		return String.fromCharCode( (charpos(a) + (decode ? 26-push : push )) % 26 + 65 );
+	});
+}
+ceasar_usertext.addEventListener("keyup", function(e){
+	if(e.keyCode == 13) {
+		var text = this.value;
+		
+		ceasar_output.textContent = ceasarde( text, parseInt(ceasar_range.value), false );
+		ceasar_decrypt.textContent = ceasarde( ceasar_output.textContent, parseInt(ceasar_range.value), true );
+	}
+});
 
 for(var i = 0; i < 26; i++ ){
 	abc.insertAdjacentHTML('beforeend', '<span>'+String.fromCharCode(i+65)+'</span>');
@@ -147,12 +165,32 @@ function clipBoard(e){
 var button = document.getElementById("copy");
 button.addEventListener("click", clipBoard);
 
+//////////////////
+//Vigenere
+//////////////////////////////
+var vig_key = document.getElementById("vig-key");
+var vig_input = document.getElementById("vig-input");
+var vig_output = document.getElementById("vig-output");
+
+function vigenere(text, keystring, decode) {
+	var i = 0, b = "A";
+	return text.toUpperCase().replace(/[A-Z]/g, function(a) {
+		b = keystring[i++ % keystring.length];
+		return String.fromCharCode( ((charpos(a) + (decode ? 26 - charpos(b) : charpos(b))) % 26 + 65) );
+	});
+}
+vig_input.addEventListener('keyup', function(e){
+	if(e.keyCode == 13) {
+		vig_output.textContent = vigenere(this.value, vig_key.value, false);
+	}
+});
+
 function abcpush(placeholder, k, brackets){
   k = k % 26;
   for(var i = 0; i < 26; i++){
     if( k > 25) k -= 26;
     placeholder.insertAdjacentHTML('beforeend', '<'+brackets+'>'+String.fromCharCode(k+65))+'</'+brackets+'>';
-    console.log(k);
+    //console.log(k);
     k++;
   }
 }

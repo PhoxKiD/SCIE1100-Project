@@ -21,14 +21,19 @@
 	</div>
 	<div class="ciphgroup">
 		<h2>Ceasar cipher</h2>
-		<input type="text" ID="ceasar-input" class="input" min="0" max="26" placeholder="Number">
+		<input type="range" ID="ceasar-range" class="input" min="0" max="26" placeholder="Number">
 		<button ID="copy">COPY</button>
 		<div ID="abc"></div>
 		<div ID="ceasar"></div>
-		<div ID="ceasar-output">I have never let my schooling interfere with my education</div>
+		<input ID="ceasar-user-text" type="text" class="input" placeholder="Message">
+		<div ID="ceasar-output">Manufucture consent</div>
+		<div ID="ceasar-decrypt"></div>
 	</div>
 	<div class="ciphgroup">
 		<h3>Vigen\ere chiper</h3>
+		<input type="text" ID="vig-key" class="input" placeholder="Key Code">
+		<input type="text" ID="vig-input" class="input" placeholder="Text">
+		<div ID="vig-output"></div>
 		<table ID="abc-table">
 			<tbody>
 			</tbody>
