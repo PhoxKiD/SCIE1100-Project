@@ -1,0 +1,112 @@
+
+::-webkit-input-placeholder {
+  color: white;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font: 20px/1.5 "Century Gothica";
+}
+.input {
+  outline: none;
+  padding: .5em 1em;
+  text-align: center;
+  border: 1px solid black;
+  width: 200px;
+  background: #999;
+  transition: all .3s ease;
+}
+.input:focus {
+  width: 30%;
+  background: white;
+}
+/*
+Canvas
+*/
+#contain {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-center;
+}
+#ranger {
+  display: block;
+  margin: 0 auto;
+}
+#ranger-sequence {
+  margin: auto;
+}
+#canvas {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+.input-box {
+  font-size: 1em;
+  text-align: center;
+  border: none;
+  border-top: 1px solid #eee;
+  border-left: 1px solid #eee;
+  width: 10%;
+}
+.input-box:focus {
+  outline: none;
+}
+/*
+String
+*/
+.string-container {
+  text-align: center;
+}
+#color-input {
+
+}
+#color-code {
+  margin: 1em 0;
+}
+#color-code span {
+  padding: 1em;
+}
+#color-text {
+
+}
+#editor {
+  border: 1px solid cyan;
+}
+/*
+Cesar chiper
+*/
+.ciphgroup {
+  font-family: monospace;
+}
+.ciphgroup span {
+  display: inline-block;
+  position: relative;
+  width: 3.8%;
+  text-align: center;
+  cursor: default;
+}
+#abc {}
+#ceasar {
+}
+#ceasar span {
+}
+#ceasar span:hover::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background-color: rgba(20, 20, 20, .6);
+  width: 100%;
+  height: 200%;
+  z-index: -1;
+}
+#abc-table {
+  border: 1px solid maroon;
+  width: 70%;
+  margin: 0 auto;
+}
