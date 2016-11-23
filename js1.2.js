@@ -120,9 +120,11 @@ var ceasar_range = document.getElementById("ceasar-range");
 var ceasar_usertext = document.getElementById("ceasar-user-text");
 var ceasar_output = document.getElementById("ceasar-output");
 var ceasar_decrypt = document.getElementById("ceasar-decrypt");
+var range_val = document.getElementById("range-value");
 //abc seq
 function ceasars(e) {
 	var a = e.target.value % 26;
+	range_val.textContent = a;
 	ceasar.innerHTML = "";
 	for (var i = 0; i < 26; i++) {
 		if ( a >= 26 ) a -= 26;

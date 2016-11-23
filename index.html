@@ -5,9 +5,16 @@
 	<title>Kryptos</title>
 </head>
 <body>
-	<h1>Hi this is Kryptos</h1>
-	<h2>Educative tool into the world of esoteric messages</h2>
-	<p>Have fun down here!</p>
+	<header>
+		<h2>Welcome to Kryptos</h2>
+		<p>
+			The purpose of Kryptos is to teach anyone the basics of Cryptology, along with some of the early applications of Cryptography,
+			 such as the Caesar cipher and the Vingenere cipher.
+		</p>
+		<p>
+			Encryption is a modern application of cryptology. Encrypting something means to alter it in another way using a key, so it becomes unreadable. It can be decrypted using the same key. Today, encryption is used to keep Internet connections secure and and files safe.
+		</p>
+	</header>
 	<div ID="contain">
 		<input type="range" ID="ranger">
 		<input type="text" ID="ranger-sequence" class="input" placeholder="Enter here...">
@@ -22,11 +29,12 @@
 	<div class="ciphgroup">
 		<h2>Ceasar cipher</h2>
 		<input type="range" ID="ceasar-range" class="input" min="0" max="26" placeholder="Number">
+		<div ID="range-value"></div>
 		<button ID="copy">COPY</button>
 		<div ID="abc"></div>
 		<div ID="ceasar"></div>
 		<input ID="ceasar-user-text" type="text" class="input" placeholder="Message">
-		<div ID="ceasar-output">Manufucture consent</div>
+		<div ID="ceasar-output"></div>
 		<div ID="ceasar-decrypt"></div>
 	</div>
 	<div class="ciphgroup">
