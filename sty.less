@@ -1,3 +1,7 @@
+// out: sty.css, sourcemap: true, compress: false
+//vars
+@abc-tborder: #b0f0f9;
+@abc-thover: rgba(200, 20, 200, .4);
 
 ::-webkit-input-placeholder {
   color: white;
@@ -17,7 +21,6 @@ body {
   border: 1px solid black;
   background: #000;
   color: #fff;
-  transition: all .3s ease;
   text-transform: uppercase;
 }
 .input:focus {
@@ -107,7 +110,37 @@ Cesar chiper
   z-index: -1;
 }
 #abc-table {
-  border: 1px solid maroon;
+  border: 1px solid @abc-tborder;
   width: 70%;
   margin: 0 auto;
+  overflow: hidden;
+  cursor: default;
+  border-collapse: collapse;
+}
+#abc-table tbody {
+
+}
+#abc-table tr {
+
+}
+#abc-table tr:not(:first-child):hover {
+  background: @abc-thover;
+}
+#abc-table tr:nth-child(1) {
+  border-bottom: 3px solid @abc-tborder;
+}
+#abc-table td:nth-child(1) {
+  border-right: 3px solid @abc-tborder;
+}
+#abc-table td {
+    position: relative;
+}
+#abc-table td:not(:first-child):hover::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 5700%;
+  top: -2800%;
+  background-color: @abc-thover;
+  z-index: -1;
 }

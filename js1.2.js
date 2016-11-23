@@ -9,7 +9,7 @@ function getColor(c){
 		//65-90 A-Z 97-122 a-z 48-57 0-9
 		if( isInt == parseInt(c) ) {
 			for( var i = 0; i < hex.length; i++ ){
-				toInt = parseInt(String.fromCharCode(i+48).replace(/"/)); 
+				toInt = parseInt(String.fromCharCode(i+48).replace(/"/));
 				if( parseInt(c) === toInt ) {
 					console.log(hex[i+26]);
 					return hex[i+26];
@@ -38,7 +38,7 @@ var ranger_seq = document.getElementById("ranger-sequence");
 function pixelate(x){
 	canvas.innerHTML = "";
 	for( var i = 0; i < x; i++ ){
-		canvas.insertAdjacentHTML('beforeend', 
+		canvas.insertAdjacentHTML('beforeend',
 			"<input type='text' maxlength=1 class='input-box'>");
 	}
 }
@@ -61,7 +61,7 @@ function canvasEvent(e){
 }
 function resizeBoxes(e){
 	var box_width = 0;
-	var eval = e.target.value;	
+	var eval = e.target.value;
 	if (eval < 30 ) {
 		box_width = 2.5;
 		pixelate(400);
@@ -125,7 +125,7 @@ function ceasars(e) {
 	var a = e.target.value % 26;
 	ceasar.innerHTML = "";
 	for (var i = 0; i < 26; i++) {
-		if ( a >= 26 ) a -= 26; 
+		if ( a >= 26 ) a -= 26;
 		ceasar.insertAdjacentHTML('beforeend', '<span>' + String.fromCharCode(a+65) + '</span>');
 		a++;
 	}
@@ -145,7 +145,7 @@ function ceasarde(text, push, decode) {
 ceasar_usertext.addEventListener("keyup", function(e){
 	if(e.keyCode == 13) {
 		var text = this.value;
-		
+
 		ceasar_output.textContent = ceasarde( text, parseInt(ceasar_range.value), false );
 		ceasar_decrypt.textContent = ceasarde( ceasar_output.textContent, parseInt(ceasar_range.value), true );
 	}
@@ -174,14 +174,15 @@ var vig_output = document.getElementById("vig-output");
 
 function vigenere(text, keystring, decode) {
 	var i = 0, b = "A";
-	return text.toUpperCase().replace(/[A-Z]/g, function(a) {
+	console.log(keystring.length);
+	return text.toUpperCase().replace(/[A-Z]/g, function(a) {//replace A to Z; g to retain last letter and replace it
 		b = keystring[i++ % keystring.length];
 		return String.fromCharCode( ((charpos(a) + (decode ? 26 - charpos(b) : charpos(b))) % 26 + 65) );
 	});
 }
 vig_input.addEventListener('keyup', function(e){
 	if(e.keyCode == 13) {
-		vig_output.textContent = vigenere(this.value, vig_key.value, false);
+		vig_output.textContent = vigenere(this.value, vig_key.value.toUpperCase(), false);
 	}
 });
 
@@ -205,11 +206,11 @@ for(var i = 0; i <= 26; i++){
 	}
 	else {
 		abc_table.getElementsByTagName("tr")[i].insertAdjacentHTML('beforeend', '<td>' + String.fromCharCode(i+65-1) + '</td>');
-		
+
 		abcpush(abc_table.getElementsByTagName("tr")[i], i-1, 'td');
 	}
 	//if(i+1 % 26) nth_row++;
-	
+
 }
 /*
 for(var i = 0; i < 26*26; i++){
