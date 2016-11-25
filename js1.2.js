@@ -167,6 +167,39 @@ function clipBoard(e){
 var button = document.getElementById("copy");
 button.addEventListener("click", clipBoard);
 
+///////////Affine
+var affine_input = document.getElementById("affine-input");
+var affine_output = document.getElementById("affine-output");
+var affine_formula = document.getElementById("affine-formula");
+var affine_numbers = document.getElementById("affine-numbers");
+
+function affine_display(e) {
+	if(e.keyCode == 13) {
+		var etext = e.target.value.toUpperCase();
+		var elength = etext.length;
+		var cipher = affine_cipher(etext, elength);
+		affine_output.textContent = cipher;
+
+		affine_numbers.innerHTML = '';
+		for(var i = 0; i < elength; i++){
+			affine_numbers.innerHTML += '<span>' + charpos(etext[i]) + '</span>';
+		}
+	}
+}
+function affine_cipher(text, size, d) {
+	return text.toUpperCase().replace(/[A-Z]/g, function(a) {
+		var apos = charpos(a);
+		return String.fromCharCode( affine_eq(apos) % 26 + 65 )  ;
+	});
+}
+function affine_eq(s){
+	var formula_text = affine_formula.value;
+	var formula_str = affine_formula.value.replace('x', '*' + s);
+	return eval(formula_str);
+}
+
+affine_input.addEventListener('keyup', affine_display);
+
 //////////////////
 //Vigenere
 //////////////////////////////
