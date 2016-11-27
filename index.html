@@ -7,20 +7,20 @@
 <body>
 	<header>
 		<h1>Welcome to Kryptos</h1>
-		<p>
+		<p style = "font-family: arial;">
 			The purpose of Kryptos is to teach anyone the basics of Cryptology, along with some of the early applications of Cryptography, such as the Caesar cipher and the Vingenere cipher.
 		</p>
-		<p>
+		<p style = "font-family: arial;">
 			Encryption is a modern application of cryptology. Encrypting something means to alter it in another way using a key, so it becomes unreadable. It can be decrypted using the same key. Today, encryption is used to keep Internet connections secure and and files safe.
 		</p>
 		<br>
 	</header>
 		<h2>Canvas</h2>
-		<p>
+		<p style = "font-family: arial; font-size: 90%;">
 			This javascript applet takes the input of letters and numbers to form an arrangement of colours on the canvas, which can be resized using the draggable bar.
 		</p>
-		<p>
-			Instructions: Use the draggable bar to pick a size for the canvas, then type a message into the box right below it and press enter. You will see your message as colours fill up the box from left to right, top to bottom.
+		<p style = "font-family: arial; font-size: 90%;">
+			<b>Instructions:</b> Use the draggable bar to pick a size for the canvas, then type a message into the box right below it and press enter. You will see your message as colours fill up the box from left to right, top to bottom.
 		</p>
 	<div ID="contain">
 		<input type="range" ID="ranger">
@@ -29,11 +29,11 @@
 	</div>
 		<br>
 		<h2>Converter</h2>
-		<p>
+		<p style = "font-family: arial; font-size: 90%;">
 			This javascript applet takes a string of letters and numbers and outputs a sequence of colours inside the blue box. This sequence can be copied into an email message.
 		</p>
-		<p>
-			Instructions: Enter a sequence of numbers and letters and press enter. You will see a sequence of colours below. Select the text and copy it. You can paste it into an email message.
+		<p style = "font-family: arial; font-size: 90%;">
+			<b>Instructions:</b> Enter a sequence of numbers and letters and press enter. You will see a sequence of colours below. Select the text and copy it. You can paste it into an email message.
 		</p>
 	<div class="string-container">
 		<input type="text" placeholder="String sequence" ID="color-input" class="input">
@@ -41,8 +41,15 @@
 		<div ID="color-text"></div>
 		<div contenteditable="true" ID="editor">d</div>
 	</div>
+		<br>
+		<h2>Caesar Cipher</h2>
+		<p style = "font-family: arial; font-size: 90%;">
+			The Caesar Cipher is one of the simplest forms of encryption. The method works by shifting the alphabet by a certain number to encrypt a message. For example, a number of 2 will shift all turn "A" in the original message to "C" in the encrypted message.
+		</p>
+		<p style = "font-family: arial; font-size: 90%;">
+			<b>Instructions:</b> Use the draggable bar to select a number to shift the alphabet by. Input a message into the box and press enter to see the shifted message below the box.
+		</p>
 	<div class="ciphgroup">
-		<h2>Ceasar cipher</h2>
 		<input type="range" ID="ceasar-range" class="input" min="0" max="26" placeholder="Number">
 		<div ID="range-value"></div>
 		<button ID="copy">COPY</button>
@@ -52,18 +59,30 @@
 		<div ID="ceasar-output"></div>
 		<div ID="ceasar-decrypt"></div>
 	</div>
+		<br>
+		<h2>Affine Cipher</h2>
 	<div class="ciphgroup">
-		<h2>Affine cipher</h2>
 		<input type="text" ID="affine-input" class="input">
 		<input type="text" ID="affine-formula" value="2x" class="input">
 		<div ID="affine-numbers"></div>
 		<div ID="affine-output"></div>
 	</div>
+		<br>
+		<h2>Vingenère</h2>
+		<p style = "font-family: arial; font-size: 90%;">
+			The Vingenère Cipher is a more complex form of the Ceaser Cipher. The cipher uses a codeword to turn the input into an encrypted output. The output can be decrypted using the same codeword. Every letter of the input is matched with a letter from the codeword, and by using the large table below, a new letter can be created for the encrypted message. The same process is done for the next letter in the input and the next letter in the codeword. If the codeword runs out of characters, then it goes back to the beginning of the codeword and continues. The process goes on until the entire input message has been encrypted and outputted.
+		</p>
+		<p style = "font-family: arial; font-size: 90%;">
+			<b>Encryption Instructions:</b> Type the codeword used to encrypt into the box on the left. Then type the message you want to encrypt into the box on the right and press enter. You will see the encrypted output below the boxes.
+		</p>
 	<div class="ciphgroup">
-		<h3>Vigen\ere chiper</h3>
 		<input type="text" ID="vig-key" class="input" placeholder="Key Code" value ="ABC">
 		<input type="text" ID="vig-input" class="input" placeholder="Text">
 		<div ID="vig-output"></div>
+		<br>
+		<p style = "font-family: arial; font-size: 75%; ">
+			<b>Table Instructions:</b> The letters on the rows and columns represent the characters of the input message and characters of the codeword. You can figure out the encrypted message without the javascript algorithm. Find the column representing the 1st letter of the input message and the row representing the 1st letter of the codeword and find where they intersect. The letter they intersect at will be the 1st character of the encrypted output message. Next, use the 2nd letter of your input and the 2nd character of your codeword and find the intersection on the table, which will be the 2nd letter of the output. You can do this for all letters of the input message. Just remember to go back to the 1st letter of the codeword should you run out of letters in the codeword to use. This can be done backwards too (deciphering or decrypting the message), but it will be a little harder. Find the row representing the 1st letter of the codeword and run along that row until you come across the 1st letter of the encrypted message. The column highlighted will be the 1st letter of the original message. Then, use the 2nd letter of the encrypted output message and the second letter of the codeword, and the highlighted column will be the 2nd letter of the original message. You can do this for the whole encrypted message, while going back to the 1st character of the codeword should you run out of letters to use in the codeword.
+		</p>
 		<table ID="abc-table">
 			<tbody>
 			</tbody>
