@@ -193,8 +193,7 @@ function affine_cipher(text, size, d) {
 	});
 }
 function affine_eq(s){
-	var formula_text = affine_formula.value;
-	var formula_str = affine_formula.value.replace('x', '*' + s);
+	var formula_str = affine_formula.value.toLowerCase().replace('x', '*' + s);
 	return eval(formula_str);
 }
 
