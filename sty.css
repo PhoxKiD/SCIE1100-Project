@@ -1,5 +1,8 @@
-::-webkit-input-placeholder {
-  color: white;
+.transition {
+  -webkit-transition: all 0.4s ease-in-out;
+  -khtml-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 * {
   padding: 0;
@@ -7,123 +10,119 @@
   box-sizing: border-box;
 }
 body {
-  font: 25px/1.5 Arial;
+  font-size: 2vw;
+  font-family: Century;
 }
-.text {
+::-webkit-input-placeholder {
+  text-transform: none;
 }
 .input {
   outline: none;
   padding: .5em 1em;
-  text-align: center;
-  border: 1px solid black;
-  background: #000;
-  color: #fff;
+  border: 1px solid #222;
   text-transform: uppercase;
 }
-#affine-formula.input {
-  text-transform: lowercase;
+textarea {
+  resize: vertical;
+  width: 100%;
+  min-height: 5em;
+  font-family: Consolas;
 }
-.input:focus {
-  background: white;
-  color: #000;
-}
-/*
-Canvas
-*/
-#contain {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-center;
-}
-#ranger {
+q {
   display: block;
-  margin: 0 auto;
+  font-style: italic;
 }
-#ranger-sequence {
-  margin: auto;
-}
-#canvas {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  position: relative;
-}
-.input-box {
-  font-size: 1em;
-  text-align: center;
-  border: none;
-  border-top: 1px solid #eee;
-  border-left: 1px solid #eee;
-  width: 10%;
-}
-.input-box:focus {
-  outline: none;
+q::after {
+  content: '" (' attr(author) ')';
 }
 /*
-String
+pages
 */
-.string-container {
-  text-align: center;
+.pages {
+  min-height: 100vh;
+  padding: 0 1em;
 }
-#color-code {
-  margin: 1em 0;
-}
-#color-code span {
-  padding: 1em;
-}
-#editor {
-  border: 1px solid cyan;
+.pages h2 {
+  color: #fff;
 }
 /*
 Cesar chiper
 */
-.ciphgroup {
+#caesar {
+  background-color: #136bf7;
 }
-.ciphgroup span {
+#caesar_abc,
+#caesar_ci {
+  text-align: center;
+}
+#caesar_abc span,
+#caesar_ci span {
   display: inline-block;
   position: relative;
-  width: 3.8%;
-  text-align: center;
-  cursor: default;
+  padding: .5em;
 }
-#ceasar span:hover::after {
+#caesar_abc span:active::after {
   content: "";
   position: absolute;
-  top: -100%;
+  top: 0;
   left: 0;
-  background-color: rgba(20, 20, 20, 0.6);
+  border: 1px solid #333;
   width: 100%;
   height: 200%;
-  z-index: -1;
+  z-index: 1;
+}
+#caesar-range {
+  vertical-align: middle;
+}
+#range-value {
+  width: 2em;
+}
+/*
+Affine
+*/
+#affine {
+  background-color: #1bd65d;
+}
+#affine-formula {
+  text-transform: lowercase;
+}
+/*
+Vigenere
+*/
+#vigenere {
+  background-color: #fc8405;
 }
 #abc-table {
-  border: 1px solid #b0f0f9;
+  border: 1px solid #131313;
   width: 70%;
   margin: 0 auto;
   overflow: hidden;
   cursor: default;
   border-collapse: collapse;
-  font-family: monospace;
 }
-#abc-table tr:not(:first-child):hover {
-  background: rgba(200, 20, 200, 0.4);
-}
-#abc-table tr:nth-child(1) {
-  border-bottom: 3px solid #b0f0f9;
-}
-#abc-table td:nth-child(1) {
-  border-right: 3px solid #b0f0f9;
-}
+#abc-table tr,
 #abc-table td {
   position: relative;
 }
-#abc-table td:not(:first-child):hover::before {
+#abc-table tr:hover {
+  background: rgba(200, 20, 200, 0.7);
+}
+#abc-table tr:nth-child(1) {
+  border-bottom: 3px solid #131313;
+}
+#abc-table td:nth-child(1) {
+  border-right: 3px solid #131313;
+}
+#abc-table td {
+  text-align: center;
+}
+#abc-table td:hover::after {
   content: "";
   position: absolute;
   width: 100%;
   height: 5700%;
   top: -2800%;
-  background-color: rgba(200, 20, 200, 0.4);
+  left: 0;
+  background-color: rgba(200, 20, 200, 0.7);
   z-index: -1;
 }

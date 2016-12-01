@@ -1,0 +1,14 @@
+Header:
+
+Welcome to Kryptos!
+
+The purpose of this website is to teach anyone the basics of cryptology, and show examples of early applications of cryptology, including the Caesar cipher and the Vinginere cipher.
+
+Encryption is a modern application of cryptology. Modern encryption works by altering some data with a key so it becomes jumbled and unreadable. The same key can be used to decrypt the data, making it readable again. Some of the modern applications of encryption include encrypting Internet connections and files.
+
+(How to use colour encryption)
+This JavaScript application works by checking a letter from the user's input and drawing the colour that the character corresponds too. The program repeats this for all the numbers and letters of the user's input.
+
+Instructions: Type a string of characters into the box that says INPUT HERE. Then press enter to see the combination of colours.
+
+(

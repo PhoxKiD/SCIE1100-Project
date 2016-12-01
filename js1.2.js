@@ -113,51 +113,59 @@ function colorString(e){
 
 color_input.addEventListener('keyup', colorString);
 */
-//------------------------
-// Ceasar cipher
-//------------------------
-var abc = document.getElementById("abc");
-var ceasar = document.getElementById("ceasar");
-var ceasar_range = document.getElementById("ceasar-range");
-var ceasar_usertext = document.getElementById("ceasar-user-text");
-var ceasar_output = document.getElementById("ceasar-output");
-var ceasar_decrypt = document.getElementById("ceasar-decrypt");
-var range_val = document.getElementById("range-value");
-//abc seq
-function ceasars(e) {
-	var a = e.target.value % 26;
-	range_val.textContent = a;
-	ceasar.innerHTML = "";
-	for (var i = 0; i < 26; i++) {
-		if ( a >= 26 ) a -= 26;
-		ceasar.insertAdjacentHTML('beforeend', '<span>' + String.fromCharCode(a+65) + '</span>');
-		a++;
-	}
+//GENERAL
+function abcpush(placeholder, k, brackets){
+  k = k % 26;
+  for(var i = 0; i < 26; i++){
+    if( k > 25) k -= 26;
+    placeholder.insertAdjacentHTML('beforeend', '<'+brackets+'>'+String.fromCharCode(k+65))+'</'+brackets+'>';
+    //console.log(k);
+    k++;
+  }
 }
-ceasar_range.addEventListener("change", ceasars);
-
 function charpos(z){
 	return z.charCodeAt(0) - 65;
 }
-function ceasarde(text, push, decode) {
+
+//------------------------
+// caesar cipher
+//------------------------
+var caesar_abc = document.getElementById("caesar_abc");
+var caesar_ci = document.getElementById("caesar_ci");
+var caesar_range = document.getElementById("caesar-range");
+var caesar_range_val = parseInt( document.getElementById("caesar-range").value );
+var caesar_usertext = document.getElementById("caesar-user-text");
+var caesar_output = document.getElementById("caesar-output");
+var caesar_decrypt = document.getElementById("caesar-decrypt");
+var range_val = document.getElementById("range-value");
+
+
+caesar_range.addEventListener("change", function(e) {
+	var tval = this.value % 26;
+	range_val.value = tval;
+	caesar_ci.innerHTML = '';
+	abcpush(caesar_ci, tval, 'span');
+});
+range_val.value = caesar_range_val;
+abcpush(caesar_abc, 0, 'span');
+abcpush(caesar_ci, caesar_range_val, 'span');
+
+function caesar_cipher(text, push, decode) {
 	var push = push % 26;
 	var i = 0;
 	return text.toUpperCase().replace(/[A-Z]/g, function(a) {
 		return String.fromCharCode( (charpos(a) + (decode ? 26-push : push )) % 26 + 65 );
 	});
 }
-ceasar_usertext.addEventListener("keyup", function(e){
+caesar_usertext.addEventListener("keyup", function(e){
 	if(e.keyCode == 13) {
 		var text = this.value;
 
-		ceasar_output.textContent = ceasarde( text, parseInt(ceasar_range.value), false );
-		ceasar_decrypt.textContent = ceasarde( ceasar_output.textContent, parseInt(ceasar_range.value), true );
+		caesar_output.textContent = caesar_cipher( text, caesar_range_val, false );
+		caesar_decrypt.textContent = caesar_cipher( caesar_output.textContent, caesar_range_val, true );
 	}
 });
 
-for(var i = 0; i < 26; i++ ){
-	abc.insertAdjacentHTML('beforeend', '<span>'+String.fromCharCode(i+65)+'</span>');
-}
 
 function clipBoard(e){
 	var range = document.createRange();
@@ -169,7 +177,9 @@ function clipBoard(e){
 var button = document.getElementById("copy");
 button.addEventListener("click", clipBoard);
 
-///////////Affine
+/*
+Affine
+*/
 var affine_input = document.getElementById("affine-input");
 var affine_output = document.getElementById("affine-output");
 var affine_formula = document.getElementById("affine-formula");
@@ -184,7 +194,7 @@ function affine_display(e) {
 
 		affine_numbers.innerHTML = '';
 		for(var i = 0; i < elength; i++){
-			affine_numbers.innerHTML += '<span>' + charpos(etext[i]) + '</span>';
+			affine_numbers.innerHTML += '<span>' + charpos(etext[i]) + '</span> -';
 		}
 	}
 }
@@ -201,6 +211,7 @@ function affine_eq(s){
 
 affine_input.addEventListener('keyup', affine_display);
 
+
 //////////////////
 //Vigenere
 //////////////////////////////
@@ -208,35 +219,24 @@ var vig_key = document.getElementById("vig-key");
 var vig_input = document.getElementById("vig-input");
 var vig_output = document.getElementById("vig-output");
 
-function vigenere(text, keystring, decode) {
+function vigenere_cipher(text, keystring, decode) {
 	var i = 0, b = "A";
-	console.log(keystring.length);
 	return text.toUpperCase().replace(/[A-Z]/g, function(a) {//replace A to Z; g to retain last letter and replace it
-		b = keystring[i++ % keystring.length];
+		b = keystring[i++ % keystring.length].toUpperCase();
 		return String.fromCharCode( ((charpos(a) + (decode ? 26 - charpos(b) : charpos(b))) % 26 + 65) );
 	});
 }
 vig_input.addEventListener('keyup', function(e){
 	if(e.keyCode == 13) {
-		vig_output.textContent = vigenere(this.value, vig_key.value.toUpperCase(), false);
+		vig_output.textContent = vigenere_cipher(this.value, vig_key.value, false);
 	}
 });
-
-function abcpush(placeholder, k, brackets){
-  k = k % 26;
-  for(var i = 0; i < 26; i++){
-    if( k > 25) k -= 26;
-    placeholder.insertAdjacentHTML('beforeend', '<'+brackets+'>'+String.fromCharCode(k+65))+'</'+brackets+'>';
-    //console.log(k);
-    k++;
-  }
-}
 
 //abc table
 var abc_table = document.getElementById("abc-table");
 for(var i = 0; i <= 26; i++){
 	abc_table.getElementsByTagName("tbody")[0].insertAdjacentHTML('beforeend', '<tr></tr>');
-	if(i==0) {
+	if(i === 0) {
 		abc_table.getElementsByTagName("tbody")[0].insertAdjacentHTML('afterbegin', '<td>0</td>');
 		abcpush(abc_table.getElementsByTagName("tr")[i], i, 'td');
 	}
@@ -245,14 +245,17 @@ for(var i = 0; i <= 26; i++){
 
 		abcpush(abc_table.getElementsByTagName("tr")[i], i-1, 'td');
 	}
-	//if(i+1 % 26) nth_row++;
 
 }
-/*
-for(var i = 0; i < 26*26; i++){
-	if(i < 26){
-		abc_table.getElementsByTagName("tr")[0].insertAdjacentHTML('beforeend', '<td>' + String.fromCharCode(i+65) + '</td5>');
-	}else if(i < 26*2){
-		abc_table.
+
+//cipher quotes
+var pquotes = document.querySelectorAll('q');
+for(var i = 0; i < pquotes.length; i++) {
+	if(pquotes[i].parentNode.parentNode.parentNode.id === 'caesar-page') {
+		pquotes[i].textContent = caesar_cipher(pquotes[i].textContent, caesar_range_val, false);
+	}else if(pquotes[i].parentNode.parentNode.parentNode.id === 'affine-page') {
+		pquotes[i].textContent = caesar_cipher(pquotes[i].textContent, caesar_range_val, false);
+	}else if(pquotes[i].parentNode.parentNode.parentNode.id === 'vigenere-page') {
+		pquotes[i].textContent = vigenere_cipher(pquotes[i].textContent, vig_key.value, false);
 	}
-}*/
+}

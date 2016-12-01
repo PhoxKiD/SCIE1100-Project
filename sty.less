@@ -1,14 +1,21 @@
 // out: sty.css, sourcemap: true, compress: false
 //vars
-@abc-tborder: #b0f0f9;
-@abc-thover: rgba(200, 20, 200, .4);
+@abc-tborder: #131313;
+@abc-thover: rgba(200, 20, 200, .7);
 
-@caesar-color: red;
-@affine-color: blue;
-@vigenere-color: maroon;
+@caesar-color: #136bf7;
+@affine-color: #1bd65d;
+@vigenere-color: #fc8405;
 
-::-webkit-input-placeholder {
-  color: white;
+.prefix(@property, @value) {
+    -webkit-@{property}: @value;
+     -khtml-@{property}: @value;
+       -moz-@{property}: @value;
+            @{property}: @value;
+}
+
+.transition {
+  .prefix(transition, all .4s ease-in-out);
 }
 * {
   padding: 0;
@@ -16,115 +23,97 @@
   box-sizing: border-box;
 }
 body {
-  font: 20px/1.5 "Century Gothica";
+  font-size: 2vw;
+  font-family: Century;
+}
+::-webkit-input-placeholder {
+  text-transform: none;
 }
 .input {
   outline: none;
   padding: .5em 1em;
-  text-align: center;
-  border: 1px solid black;
-  background: #000;
-  color: #fff;
+  border: 1px solid #222;
   text-transform: uppercase;
 }
-.input:focus {
-  background: white;
-  color: #000;
+textarea {
+  resize: vertical;
+  width: 100%;
+  min-height: 5em;
+  font-family: Consolas;
 }
-/*pages*/
+.input:focus {
+}
+q {
+  display: block;
+  font-style: italic;
+}
+q::after {
+  content: '" (' attr(author) ')';
+}
+/*
+pages
+*/
 .pages {
   min-height: 100vh;
+  padding: 0 1em;
 }
-#caesar-page {
-  background: #3FBEE8;
+.pages h2 {
+  color: #fff;
 }
-#affine-page {
-  background: #D339FA;
-}
-#vigenere-page {
-  background: #7dfe99;
-}
-/*
-Canvas
-*/
-#contain {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-center;
-}
-#ranger {
-  display: block;
-  margin: 0 auto;
-}
-#ranger-sequence {
-  margin: auto;
-}
-#canvas {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  position: relative;
-}
-.input-box {
-  font-size: 1em;
-  text-align: center;
-  border: none;
-  border-top: 1px solid #eee;
-  border-left: 1px solid #eee;
-  width: 10%;
-}
-.input-box:focus {
-  outline: none;
-}
-/*
-String
-*/
-.string-container {
-  text-align: center;
-}
-#color-input {
-
-}
-#color-code {
-  margin: 1em 0;
-}
-#color-code span {
-  padding: 1em;
-}
-#color-text {
-
-}
-#editor {
-  border: 1px solid cyan;
+.ciphgroup {
 }
 /*
 Cesar chiper
 */
-.ciphgroup {
-  font-family: monospace;
+#caesar-page {
 }
-.ciphgroup span {
+#caesar {
+  background-color: @caesar-color;
+}
+#caesar_abc,
+#caesar_ci {
+  text-align: center;
+}
+#caesar_abc span,
+#caesar_ci span{
   display: inline-block;
   position: relative;
-  width: 3.8%;
-  text-align: center;
-  cursor: default;
+  padding: .5em;
 }
-#abc {}
-#ceasar {
-}
-#ceasar span {
-}
-#ceasar span:hover::after {
+#caesar_abc span:active::after {
   content: "";
   position: absolute;
-  top: -100%;
+  top: 0;
   left: 0;
-  background-color: rgba(20, 20, 20, .6);
+  border: 1px solid #333;
   width: 100%;
   height: 200%;
-  z-index: -1;
+  z-index: 1;
+}
+#caesar-range {
+  vertical-align: middle;
+}
+#range-value {
+  width: 2em;
+}
+/*
+Affine
+*/
+#affine-page {
+}
+#affine {
+  background-color: @affine-color;
+}
+#affine-formula {
+  text-transform: lowercase;
+}
+/*
+Vigenere
+*/
+#vigenere-page {
+}
+#vigenere {
+  background-color: @vigenere-color;
 }
 #abc-table {
   border: 1px solid @abc-tborder;
@@ -133,15 +122,18 @@ Cesar chiper
   overflow: hidden;
   cursor: default;
   border-collapse: collapse;
-  font-size: 0.5em;
 }
 #abc-table tbody {
 
 }
+#abc-table tr,
+#abc-table td {
+  position: relative;
+}
 #abc-table tr {
 
 }
-#abc-table tr:not(:first-child):hover {
+#abc-table tr:hover {
   background: @abc-thover;
 }
 #abc-table tr:nth-child(1) {
@@ -151,14 +143,17 @@ Cesar chiper
   border-right: 3px solid @abc-tborder;
 }
 #abc-table td {
-    position: relative;
+    text-align: center;
 }
-#abc-table td:not(:first-child):hover::before {
+#abc-table td:hover::after {
   content: "";
   position: absolute;
   width: 100%;
   height: 5700%;
   top: -2800%;
+  left: 0;
   background-color: @abc-thover;
   z-index: -1;
+}
+#abc-table td span {
 }
