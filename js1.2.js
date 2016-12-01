@@ -31,9 +31,10 @@ function getColor(c){
 //------------------------
 // CANVAS
 //------------------------
+/*
 var canvas = document.getElementById("canvas");
 var ranger = document.getElementById("ranger");
-var ranger_seq = document.getElementById("ranger-sequence");
+var ranger_seq = document.getElementById("ranger-sequence");*/
 
 function pixelate(x){
 	canvas.innerHTML = "";
@@ -79,7 +80,7 @@ function resizeBoxes(e){
 	}
 	console.log(canvas.offsetWidth);
 }
-
+/*
 canvas.addEventListener('keyup', canvasEvent);
 ranger_seq.addEventListener('keyup', function(e){
 	var inputs = document.getElementsByClassName("input-box");
@@ -90,11 +91,12 @@ ranger_seq.addEventListener('keyup', function(e){
 		}
 	}
 });
-ranger.addEventListener('change', resizeBoxes);
+ranger.addEventListener('change', resizeBoxes);*/
 
 //------------------------
 // Color String
 //------------------------
+/*
 var color_input = document.getElementById("color-input");
 var color_code = document.getElementById("color-code");
 var color_text = document.getElementById("color-text");
@@ -110,7 +112,7 @@ function colorString(e){
 }
 
 color_input.addEventListener('keyup', colorString);
-
+*/
 //------------------------
 // Ceasar cipher
 //------------------------

@@ -3,6 +3,10 @@
 @abc-tborder: #b0f0f9;
 @abc-thover: rgba(200, 20, 200, .4);
 
+@caesar-color: red;
+@affine-color: blue;
+@vigenere-color: maroon;
+
 ::-webkit-input-placeholder {
   color: white;
 }
@@ -26,6 +30,19 @@ body {
 .input:focus {
   background: white;
   color: #000;
+}
+/*pages*/
+.pages {
+  min-height: 100vh;
+}
+#caesar-page {
+  background: #3FBEE8;
+}
+#affine-page {
+  background: #D339FA;
+}
+#vigenere-page {
+  background: #7dfe99;
 }
 /*
 Canvas
@@ -116,6 +133,7 @@ Cesar chiper
   overflow: hidden;
   cursor: default;
   border-collapse: collapse;
+  font-size: 0.5em;
 }
 #abc-table tbody {
 
