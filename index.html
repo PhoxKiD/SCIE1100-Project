@@ -47,6 +47,12 @@
 	</div>
 	<div ID="affine-page" class="pages">
 			<h2 ID="affine">Affine Cipher</h2>
+			<p>
+				The Affine Cipher is a slightly more complicated version of the Ceaser Cipher. Instead of a single number that shifts the alphabet, a simple equation is used. The value of the letter in the original message will be substituted into X, and the output will wrap back around to 0 if it goes above 25 by using a modular function. For example, a message "EN" will be interpreted as numbers 4 and 13, as that is the number they are in the alphabet (A is 0, not 1). For example, if the equation was 2X+1, then 5 would be put into the equation (2(4)+1) = 9, and the 9th number of the alphabet, J, will be used as the first letter of the encrypted message. N is 13, then (2(13)+1) = 27. 27 mod 26 is 1, and letter 1 of the alphabet (starting from 0) is B. "EN" and 2X+1 will output "JB".
+			</p>
+			<p>
+				<b>Instructions:</b> First, enter a simple equation into the smaller box that will be used to shift the alphabet. The equation only supports binomials of the first degree, so equations like 2X+1 will work. The equation must have X somewhere. Addition "a+b", subtraction "a-b", multiplication "ab", and division "a/b" can be used. Next, enter a message you want encrypted and press enter. You will see the shifted message below the boxes, along with the number sequence of the original message.
+			</p>
 		<div class="ciphgroup">
 			<textarea ID="affine-input"></textarea>
 			<input type="text" ID="affine-formula" value="2x" class="input">
