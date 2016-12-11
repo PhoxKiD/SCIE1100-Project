@@ -1,90 +1,145 @@
 <!doctype html>
 <html>
+
 <head>
-	<link rel="stylesheet" href="sty.css" type="text/css">
-	<title>Kryptos</title>
+  <link rel="stylesheet" href="sty.css" type="text/css">
+  <title>Kryptos</title>
 </head>
+
 <body>
-	<nav>
-		<ul>
-			<li><a href="#caesar">Caesar</a></li>
-			<li><a href="#affine">Affine</a></li>
-			<li><a href="#vigenere">Vigenere</a></li>
-		</ul>
-	</nav>
-	<header>
-		<div class="text">
-			<h1>Welcome to Kryptos</h1>
-			<p>
-				The purpose of Kryptos is to teach anyone the basics of Cryptology, along with some of the early applications of Cryptography, such as the Caesar cipher and the Vingenere cipher.
-			</p>
-			<p>
-				Encryption is a modern application of cryptology. Encrypting something means to alter it in another way using a key, so it becomes unreadable. It can be decrypted using the same key. Today, encryption is used to keep Internet connections secure and and files safe.
-			</p>
-		</div>
-	</header>
-	<div ID="caesar-page" class="pages">
-			<h2 ID="caesar">Caesar Cipher</h2>
-			<p>
-				The Caesar Cipher is one of the simplest forms of encryption. The method works by shifting the alphabet by a certain number to encrypt a message. For example, a number of 2 will turn every "A" in the original message to "C" in the encrypted message.
-			</p>
-			<p>
-				<b>Instructions:</b> Use the draggable bar to select a number to shift the alphabet by. Input a message into the box and press enter to see the shifted message below the box.
-			</p>
-		<div class="ciphgroup">
-			<input type="range" ID="caesar-range" class="input" min="0" max="26" placeholder="Number">
-			<input ID="range-value">
-			<button ID="copy">COPY</button>
-			<div ID="caesar_abc"></div>
-			<div ID="caesar_ci"></div>
-			<textarea ID="caesar-user-text" placeholder="Message..." class="input"></textarea>
-			<div ID="caesar-output"></div>
-			<div ID="caesar-decrypt"></div>
-			<p>
-					<q author="Voltaire">Paper money eventually returns to its intrinsic value – zero.</q>
-			</p>
-		</div>
-	</div>
-	<div ID="affine-page" class="pages">
-			<h2 ID="affine">Affine Cipher</h2>
-		<div class="ciphgroup">
-			<textarea ID="affine-input"></textarea>
-			<input type="text" ID="affine-formula" value="2x" class="input">
-			<div ID="affine-numbers"></div>
-			<div ID="affine-output"></div>
-			<p>
-				<q author="René Descartes">I think, therefore I am.</q>
-			</p>
-		</div>
-	</div>
-	<div ID="vigenere-page" class="pages">
-		<div class="text">
-			<h2 ID="vigenere">Vingenère</h2>
-			<p>
-				The Vingenère Cipher is a more complex form of the Ceaser Cipher. The cipher uses a codeword to turn the input into an encrypted output. The output can be decrypted using the same codeword. Every letter of the input is matched with a letter from the codeword, and by using the large table below, a new letter can be created for the encrypted message. The same process is done for the next letter in the input and the next letter in the codeword. If the codeword runs out of characters, then it goes back to the beginning of the codeword and continues. The process goes on until the entire input message has been encrypted and outputted.
-			</p>
-			<p>
-				<b>Encryption Instructions:</b> Type the codeword used to encrypt into the box on the left. Then type the message you want to encrypt into the box on the right and press enter. You will see the encrypted output below the boxes.
-			</p>
-		</div>
-		<div class="ciphgroup">
-			<input type="text" ID="vig-key" class="input" placeholder="Key..." value ="ABC">
-			<textarea ID="vig-input" class="input" placeholder="Text goes here..."></textarea>
-			<div ID="vig-output"></div>
-			<p>
-				<q author="Bertrand Russell">I would never die for my beliefs because I might be wrong</q>
-			</p>
-			<p>
-				<b>Table Instructions:</b> The letters on the rows and columns represent the characters of the input message and characters of the codeword. You can figure out the encrypted message without the javascript algorithm. Find the column representing the 1st letter of the input message and the row representing the 1st letter of the codeword and find where they intersect. The letter they intersect at will be the 1st character of the encrypted output message. Next, use the 2nd letter of your input and the 2nd character of your codeword and find the intersection on the table, which will be the 2nd letter of the output. You can do this for all letters of the input message. Just remember to go back to the 1st letter of the codeword should you run out of letters in the codeword to use. This can be done backwards too (deciphering or decrypting the message), but it will be a little harder. Find the row representing the 1st letter of the codeword and run along that row until you come across the 1st letter of the encrypted message. The column highlighted will be the 1st letter of the original message. Then, use the 2nd letter of the encrypted output message and the second letter of the codeword, and the highlighted column will be the 2nd letter of the original message. You can do this for the whole encrypted message, while going back to the 1st character of the codeword should you run out of letters to use in the codeword.
-			</p>
-			<table ID="abc-table">
-				<tbody>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<footer>
-	</footer>
-<script type="text/javascript" src="js1.2.js"></script>
+  <nav ID="nav">
+    <ul>
+      <li><a href="#caesar">Caesar</a></li>
+      <li><a href="#affine">Affine</a></li>
+      <li><a href="#vigenere">Vigenere</a></li>
+    </ul>
+  </nav>
+  <header class="header">
+    <div class="text">
+      <h1>Welcome to Kryptos</h1>
+      <p>
+        The purpose of Kryptos is to teach anyone the basics of Cryptology, along with some of the early applications of Cryptography, such as the Caesar cipher and the Vingenere cipher.
+      </p>
+      <p>
+        Encryption is a modern application of cryptology. Encrypting something means to alter it in another way using a key, so it becomes unreadable. It can be decrypted using the same key. Today, encryption is used to keep Internet connections secure and and
+        files safe.
+      </p>
+    </div>
+  </header>
+  <div ID="caesar-page" class="pages">
+    <h2 ID="caesar">Caesar Cipher</h2>
+    <p>
+      The Caesar Cipher is one of the simplest forms of encryption. The method works by shifting the alphabet by a certain number to encrypt a message. For example, a number of 2 will turn every "A" in the original message to "C" in the encrypted message.
+    </p>
+    <p>
+      <b>Instructions:</b> Use the draggable bar to select a number to shift the alphabet by. Input a message into the box and press enter to see the shifted message below the box.
+    </p>
+    <div class="ciphgroup">
+      <input type="range" ID="caesar-range" class="input" min="0" max="26" placeholder="Number" value="13">
+      <input ID="range-value" disabled="disabled">
+      <button ID="copy">COPY</button>
+      <div ID="caesar_abc"></div>
+      <div ID="caesar_ci"></div>
+      <textarea ID="caesar-user-text" placeholder="Message..." class="input" pattern="[A-Z]"></textarea>
+      <button class="button" ID="caesar-cbutton">Cipher</button>
+      <button class="button" ID="caesar-dbutton">Decipher</button>
+      <div ID="caesar-output"></div>
+      <div ID="caesar-decrypt"></div>
+      <p>
+        <q author="Voltaire">Paper money eventually returns to its intrinsic value – zero.</q>
+      </p>
+
+      <div ID="wrap-graph">
+        <ul ID="graph">
+          <li><span class="index">A</span><span></span><span></span></li>
+          <li><span class="index">B</span><span></span><span></span></li>
+          <li><span class="index">C</span><span></span><span></span></li>
+          <li><span class="index">D</span><span></span><span></span></li>
+          <li><span class="index">F</span><span></span><span></span></li>
+          <li><span class="index">E</span><span></span><span></span></li>
+          <li><span class="index">G</span><span></span><span></span></li>
+          <li><span class="index">H</span><span></span><span></span></li>
+          <li><span class="index">I</span><span></span><span></span></li>
+          <li><span class="index">J</span><span></span><span></span></li>
+          <li><span class="index">K</span><span></span><span></span></li>
+          <li><span class="index">L</span><span></span><span></span></li>
+          <li><span class="index">M</span><span></span><span></span></li>
+          <li><span class="index">N</span><span></span><span></span></li>
+          <li><span class="index">O</span><span></span><span></span></li>
+          <li><span class="index">P</span><span></span><span></span></li>
+          <li><span class="index">Q</span><span></span><span></span></li>
+          <li><span class="index">R</span><span></span><span></span></li>
+          <li><span class="index">S</span><span></span><span></span></li>
+          <li><span class="index">T</span><span></span><span></span></li>
+          <li><span class="index">U</span><span></span><span></span></li>
+          <li><span class="index">V</span><span></span><span></span></li>
+          <li><span class="index">W</span><span></span><span></span></li>
+          <li><span class="index">X</span><span></span><span></span></li>
+          <li><span class="index">Y</span><span></span><span></span></li>
+          <li><span class="index">Z</span><span></span><span></span></li>
+        </ul>
+        <button ID="reset-graph">Reset</button>
+      </div>
+    </div>
+  </div>
+  <div ID="affine-page" class="pages">
+    <h2 ID="affine">Affine Cipher</h2>
+    <div class="ciphgroup">
+      <textarea ID="affine-input" class="input"></textarea>
+      <input type="text" ID="affine-formula" value="2x" class="input">
+      <div ID="affine-numbers"></div>
+      <div ID="affine-output"></div>
+      <p>
+        <q author="René Descartes">I think, therefore I am.</q>
+      </p>
+    </div>
+  </div>
+  <div ID="vigenere-page" class="pages">
+    <div class="text">
+      <h2 ID="vigenere">Vingenère</h2>
+      <p>
+        The Vingenère Cipher is a more complex form of the Ceaser Cipher. The cipher uses a codeword to turn the input into an encrypted output. The output can be decrypted using the same codeword. Every letter of the input is matched with a letter from the codeword,
+        and by using the large table below, a new letter can be created for the encrypted message. The same process is done for the next letter in the input and the next letter in the codeword. If the codeword runs out of characters, then it goes back
+        to the beginning of the codeword and continues. The process goes on until the entire input message has been encrypted and outputted.
+      </p>
+      <p>
+        <b>Encryption Instructions:</b> Type the codeword used to encrypt into the box on the left. Then type the message you want to encrypt into the box on the right and press enter. You will see the encrypted output below the boxes.
+      </p>
+    </div>
+    <div class="ciphgroup">
+      <input type="text" ID="vig-key" class="input" placeholder="Key..." value="ABC">
+      <textarea ID="vig-input" class="input" placeholder="Text goes here..."></textarea>
+      <div ID="vig-output"></div>
+      <p>
+        <q author="Bertrand Russell">I would never die for my beliefs because I might be wrong</q>
+      </p>
+      <p>
+        <b>Table Instructions:</b> The letters on the rows and columns represent the characters of the input message and characters of the codeword. You can figure out the encrypted message without the javascript algorithm. Find the column representing
+        the 1st letter of the input message and the row representing the 1st letter of the codeword and find where they intersect. The letter they intersect at will be the 1st character of the encrypted output message. Next, use the 2nd letter of your
+        input and the 2nd character of your codeword and find the intersection on the table, which will be the 2nd letter of the output. You can do this for all letters of the input message. Just remember to go back to the 1st letter of the codeword should
+        you run out of letters in the codeword to use. This can be done backwards too (deciphering or decrypting the message), but it will be a little harder. Find the row representing the 1st letter of the codeword and run along that row until you come
+        across the 1st letter of the encrypted message. The column highlighted will be the 1st letter of the original message. Then, use the 2nd letter of the encrypted output message and the second letter of the codeword, and the highlighted column will
+        be the 2nd letter of the original message. You can do this for the whole encrypted message, while going back to the 1st character of the codeword should you run out of letters to use in the codeword.
+      </p>
+      <table ID="abc-table">
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pages" ID="colorc-page">
+    <div ID="ciphgroup">
+      <textarea ID="canvas-input">ABCDZ</textarea>
+      <canvas ID="canvas-img">The browser does not support canvas.</canvas>
+      <input type="button" value="Encrypt" ID="encrypt-canvas">
+      <input type="file" ID="img-load">
+      <canvas ID="img-loaded"></div>
+      <textarea ID="canvas-decipher" disabled="disabled"></textarea>
+    </div>
+  </div>
+  <footer>
+  </footer>
+  <script type="text/javascript" src="sv2.js"></script>
 </body>
+
 </html>

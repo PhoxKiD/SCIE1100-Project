@@ -7,6 +7,10 @@
 @affine-color: #1bd65d;
 @vigenere-color: #fc8405;
 
+@caesar-bg: 'https://i.ytimg.com/vi/mwFHskeAHtE/maxresdefault.jpg';
+@affine-bg: 'https://i.kinja-img.com/gawker-media/image/upload/b3goggv5rb4zsefwyj6w.jpg';
+
+
 .prefix(@property, @value) {
     -webkit-@{property}: @value;
      -khtml-@{property}: @value;
@@ -22,8 +26,10 @@
   margin: 0;
   box-sizing: border-box;
 }
+html {
+}
 body {
-  font-size: 2vw;
+  font-size: 25px;
   font-family: Century;
 }
 ::-webkit-input-placeholder {
@@ -34,6 +40,9 @@ body {
   padding: .5em 1em;
   border: 1px solid #222;
   text-transform: uppercase;
+}
+.button {
+  padding: 5px 10px;
 }
 textarea {
   resize: vertical;
@@ -53,14 +62,37 @@ q::after {
 /*
 pages
 */
+#nav {
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+#nav ul {
+  list-style: none;
+}
+#nav a {
+  text-decoration: none;
+}
+.header {
+  z-index: -1;
+}
 .pages {
   min-height: 100vh;
-  padding: 0 1em;
+  padding: 0 5vh;
+  h2 {
+    color: white;
+  }
 }
-.pages h2 {
-  color: #fff;
+#caesar-page {
+  background-color: @caesar-color;
 }
-.ciphgroup {
+#affine-page {
+}
+#vigenere-page {
+
+}
+
+#colorc-page {
 }
 /*
 Cesar chiper
@@ -70,31 +102,121 @@ Cesar chiper
 #caesar {
   background-color: @caesar-color;
 }
+
 #caesar_abc,
 #caesar_ci {
+counter-reset: enum;
   text-align: center;
+  cursor: default;
+  font-size: 2.3vw;
+}
+#caesar_abc span{
+  position: relative;
+  &::before {
+    counter-increment: enum;
+    content: counter(enum);
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    background: white;
+    z-index: 1;
+  }
+  &:hover::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.3);
+    width: 100%;
+    height: 200%;
+  }
+  &:hover::before {
+    opacity: 0;
+  }
 }
 #caesar_abc span,
 #caesar_ci span{
   display: inline-block;
   position: relative;
-  padding: .5em;
+  padding: .2em .3em;
+  width: 3.6%;
+  border-left: 1px solid black;
+  border-top: 1px solid black;
 }
-#caesar_abc span:active::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: 1px solid #333;
-  width: 100%;
-  height: 200%;
-  z-index: 1;
+#caesar_abc span:nth-child(1),
+#caesar_ci span:nth-child(1) {
+  border-left: none;
 }
+
 #caesar-range {
   vertical-align: middle;
+  position: relative;
 }
 #range-value {
   width: 2em;
+}
+
+@length: 650px;
+@bar-static-color: white;
+@bar-dynamic-color: rgba(30, 49, 180, 0.5);
+#wrap-graph {
+  position: relative;
+  height: @length/2;
+  margin: 0 auto;
+  ul {
+    list-style: none;
+    position: absolute;
+    text-align: center;
+    display: flex;
+    bottom: 0;
+    width: 100%;
+    li {
+      display: inline-block;
+      text-align: center;
+      position: relative;
+      width: 4%;
+      font-size: 1em;
+    }
+  }
+}
+
+#wrap-graph li span {
+  &.index {
+    font-size: 1em;
+    background: green;
+    display: block;
+    color: white;
+    z-index: 1;
+    position: relative;
+    top: 100%;
+    height: 100%;
+  }
+  &:nth-child(2),
+  &:nth-child(3) {
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    right: 5%;
+    width: 90%;
+  }
+  &:nth-child(2) {
+    background-color: @bar-static-color;
+    height: 100px;
+  }
+  &:nth-child(3) {
+    background-color: @bar-dynamic-color;
+    height: 50px;
+  }
+}
+li span:nth-child(1) {
+  height: 100px;
+  background: rgba(0, 0, 0, .5);
+}
+li span:nth-child(2) {
+  background: rgba(34, 140, 90, .5);
+  height: 100px;
 }
 /*
 Affine
@@ -156,4 +278,14 @@ Vigenere
   z-index: -1;
 }
 #abc-table td span {
+}
+
+#colorc-page {
+
+}
+#canvas-input {
+
+}
+#canvas-img {
+  border: 1px solid #eee;
 }
