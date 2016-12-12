@@ -12,6 +12,7 @@
       <li><a href="#caesar">Caesar</a></li>
       <li><a href="#affine">Affine</a></li>
       <li><a href="#vigenere">Vigenere</a></li>
+      <li><a href="#img-cipher">Image Cipher</a></li>
     </ul>
   </nav>
   <header class="header">
@@ -37,7 +38,6 @@
     <div class="ciphgroup">
       <input type="range" ID="caesar-range" class="input" min="0" max="26" placeholder="Number" value="13">
       <input ID="range-value" disabled="disabled">
-      <button ID="copy">COPY</button>
       <div ID="caesar_abc"></div>
       <div ID="caesar_ci"></div>
       <textarea ID="caesar-user-text" placeholder="Message..." class="input" pattern="[A-Z]"></textarea>
@@ -128,12 +128,13 @@
     </div>
   </div>
   <div class="pages" ID="colorc-page">
+    <h2 ID="img-cipher">Image cipher</h2>
     <div ID="ciphgroup">
       <textarea ID="canvas-input">ABCDZ</textarea>
-      <canvas ID="canvas-img">The browser does not support canvas.</canvas>
+      <canvas ID="canvas-img" width="500px" height="500px">The browser does not support canvas.</canvas>
       <input type="button" value="Encrypt" ID="encrypt-canvas">
       <input type="file" ID="img-load">
-      <canvas ID="img-loaded"></div>
+      <canvas ID="img-loaded"></canvas>
       <textarea ID="canvas-decipher" disabled="disabled"></textarea>
     </div>
   </div>

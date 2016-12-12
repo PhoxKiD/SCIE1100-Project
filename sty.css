@@ -38,6 +38,9 @@ q {
 q::after {
   content: '" (' attr(author) ')';
 }
+p {
+  padding: 1em;
+}
 /*
 pages
 */
@@ -48,22 +51,29 @@ pages
 }
 #nav ul {
   list-style: none;
+  position: relative;
+}
+#nav li {
+  display: inline-block;
+  text-align: right;
 }
 #nav a {
   text-decoration: none;
+  color: white;
+  background: rgba(0, 0, 0, 0.8);
 }
 .header {
   z-index: -1;
 }
 .pages {
   min-height: 100vh;
-  padding: 0 5vh;
+  padding: 5vh 10vw;
 }
 .pages h2 {
   color: white;
 }
-#caesar-page {
-  background-color: #136bf7;
+.pages p {
+  font-size: .7em;
 }
 /*
 Cesar chiper
@@ -146,7 +156,6 @@ Cesar chiper
 }
 #wrap-graph li span.index {
   font-size: 1em;
-  background: green;
   display: block;
   color: white;
   z-index: 1;
@@ -163,12 +172,10 @@ Cesar chiper
   width: 90%;
 }
 #wrap-graph li span:nth-child(2) {
-  background-color: white;
-  height: 100px;
+  background-color: #3c3b3b;
 }
 #wrap-graph li span:nth-child(3) {
   background-color: rgba(30, 49, 180, 0.5);
-  height: 50px;
 }
 li span:nth-child(1) {
   height: 100px;
@@ -206,7 +213,7 @@ Vigenere
   position: relative;
 }
 #abc-table tr:hover {
-  background: rgba(200, 20, 200, 0.7);
+  background: #fc8405;
 }
 #abc-table tr:nth-child(1) {
   border-bottom: 3px solid #131313;
@@ -224,9 +231,16 @@ Vigenere
   height: 5700%;
   top: -2800%;
   left: 0;
-  background-color: rgba(200, 20, 200, 0.7);
+  background-color: #fc8405;
   z-index: -1;
+}
+#img-cipher {
+  background: #f320b0;
 }
 #canvas-img {
   border: 1px solid #eee;
+  width: 500px;
+  height: 500px;
+  display: block;
+  margin: 0 auto;
 }

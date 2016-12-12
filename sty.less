@@ -1,12 +1,12 @@
 // out: sty.css, sourcemap: true, compress: false
 //vars
 @abc-tborder: #131313;
-@abc-thover: rgba(200, 20, 200, .7);
+@abc-thover: @vigenere-color;
 
 @caesar-color: #136bf7;
 @affine-color: #1bd65d;
 @vigenere-color: #fc8405;
-
+@img-cipher-color: #f320b0;
 @caesar-bg: 'https://i.ytimg.com/vi/mwFHskeAHtE/maxresdefault.jpg';
 @affine-bg: 'https://i.kinja-img.com/gawker-media/image/upload/b3goggv5rb4zsefwyj6w.jpg';
 
@@ -59,6 +59,9 @@ q {
 q::after {
   content: '" (' attr(author) ')';
 }
+p {
+  padding: 1em;
+}
 /*
 pages
 */
@@ -69,22 +72,31 @@ pages
 }
 #nav ul {
   list-style: none;
+  position: relative;
+}
+#nav li {
+  display: inline-block;
+  text-align: right;
 }
 #nav a {
   text-decoration: none;
+  color:white;
+  background: rgba(0,0,0,.8);
 }
 .header {
   z-index: -1;
 }
 .pages {
   min-height: 100vh;
-  padding: 0 5vh;
+  padding: 5vh 10vw;
   h2 {
     color: white;
   }
+  p {
+    font-size: .7em;
+  }
 }
 #caesar-page {
-  background-color: @caesar-color;
 }
 #affine-page {
 }
@@ -159,7 +171,7 @@ counter-reset: enum;
 }
 
 @length: 650px;
-@bar-static-color: white;
+@bar-static-color: #3c3b3b;
 @bar-dynamic-color: rgba(30, 49, 180, 0.5);
 #wrap-graph {
   position: relative;
@@ -185,7 +197,6 @@ counter-reset: enum;
 #wrap-graph li span {
   &.index {
     font-size: 1em;
-    background: green;
     display: block;
     color: white;
     z-index: 1;
@@ -203,11 +214,9 @@ counter-reset: enum;
   }
   &:nth-child(2) {
     background-color: @bar-static-color;
-    height: 100px;
   }
   &:nth-child(3) {
     background-color: @bar-dynamic-color;
-    height: 50px;
   }
 }
 li span:nth-child(1) {
@@ -286,6 +295,13 @@ Vigenere
 #canvas-input {
 
 }
+#img-cipher {
+  background: @img-cipher-color;
+}
 #canvas-img {
   border: 1px solid #eee;
+  width: 500px;
+  height: 500px;
+  display: block;
+  margin: 0 auto;
 }

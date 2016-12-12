@@ -74,7 +74,7 @@
 			window.getSelection().empty();
 		}
 		var button = document.getElementById("copy");
-		button.addEventListener("click", clipBoard);
+		//button.addEventListener("click", clipBoard);
 
 		//Frequency analysis
 		var freq = [8.167, 1.492, 2.782, 4.253, 12.702, 2.228, 2.015, 6.094, 6.966, 0.153, 0.772, 4.025, 2.406, 6.749, 7.507, 1.929, 0.095, 5.987, 6.327, 9.056, 2.758, 0.978, 2.360, 0.150, 1.974, 0.074];
@@ -204,7 +204,7 @@
 		var loadimg = document.getElementById('img-load');
 		var loadedcanvas = document.getElementById('img-loaded');
 		var loadedctximage = loadedcanvas.getContext('2d');
-		var pix = 10;
+		var canvas_detext = document.getElementById("canvas-decipher");
 
 		if(canvas_ci.getContext){
 			loadimg.addEventListener('change', displayImg, false);
@@ -212,19 +212,36 @@
 		}
 		function canvas_cipher(e){
 			var text = canvas_uinput.value;
-			for(var i=0; i<text.length; i++){
-				//console.log(text.length + '=' + text)
-				var acolor = getRgb( getColor(text[i]) );
-				colors.fillStyle = 'rgb(' + acolor[0] + ',' + acolor[1] + ',' + acolor[2] + ')';
-				colors.fillRect(i*pix, 0, pix, pix);
-			}
+			var t = 0;
+		  var x = 50;
+		  var y = 0;
+	    for(var i=0; i<10;i++) {
+	      for(var k=0; k<10; k++) {
+					var acolor = getRgb( getColor(text[t]) );
+					t++;
+					colors.fillStyle = 'rgb(' + acolor[0] + ',' + acolor[1] + ',' + acolor[2] + ')';
+	        colors.fillRect(k * x, y, x, x);
+	      }
+	      y += 50;
+	    }
 		}
-		function colorpix(x, y){
-			var pixelData = loadedctximage.getImageData(x, y, 1, 1).data;
-			return pixelData;
-		}
-		function canvas_decipher(e){
+		function canvas_decipher(cont){
+			var y = 0;
+			canvas_detext.textContent = '';
+			for(var i=0; i<10;i++) {
+	      for(var k=0; k<10; k++) {
+					var temp = cont.getImageData(k*50, i*50, 1, 1).data;
+					var temprgb = 'rgb(' + temp[0] + ', ' + temp[1] + ', ' + temp[2] + ')';
 
+					for(var j=0; j<26; j++) {
+						if( temprgb == hex[j] ) {
+							canvas_detext.textContent += String.fromCharCode(j+65);
+							break;
+						}
+					}
+	      }
+	      y += 50;
+	    }
 		}
 		function displayImg(e){
 			var reader = new FileReader();
@@ -234,10 +251,15 @@
 					loadedcanvas.width = img.width;
 					loadedcanvas.height = img.height;
 					loadedctximage.drawImage(img, 0, 0);
+
+					canvas_decipher(loadedctximage);
+					console.log(loadedctximage.getImageData(50, 0, 1,1).data);
 				}
 				img.src = event.target.result;
 			}
 			reader.readAsDataURL(e.target.files[0]);
+
+
 		}
 
 		function getRgb(c){
@@ -254,7 +276,7 @@
 						break;
 					}
 				}
-			}else if( c.toLowerCase() != c.toUpperCase() ) {
+			}else if( c.match(/[A-z]/gi) ) {
 				for( var i = 0; i < hex.length; i++ ) {
 					if( c.toLowerCase() == String.fromCharCode(i+97) ) {
 						return hex[i];
