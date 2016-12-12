@@ -69,6 +69,7 @@ pages
   position: fixed;
   right: 0;
   top: 0;
+  z-index: 2;
 }
 #nav ul {
   list-style: none;
@@ -117,10 +118,11 @@ Cesar chiper
 
 #caesar_abc,
 #caesar_ci {
-counter-reset: enum;
+  counter-reset: enum;
   text-align: center;
   cursor: default;
   font-size: 2.3vw;
+  font-family: monospace;
 }
 #caesar_abc span{
   position: relative;
@@ -253,6 +255,8 @@ Vigenere
   overflow: hidden;
   cursor: default;
   border-collapse: collapse;
+  font-family: monospace;
+  font-size: .5em;
 }
 #abc-table tbody {
 
