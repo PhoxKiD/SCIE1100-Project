@@ -78,17 +78,22 @@
           <li><span class="index">Y</span><span></span><span></span></li>
           <li><span class="index">Z</span><span></span><span></span></li>
         </ul>
-        <button ID="reset-graph">Reset</button>
+        <button ID="reset-graph" class="button">Reset</button>
       </div>
     </div>
   </div>
   <div ID="affine-page" class="pages">
     <h2 ID="affine">Affine Cipher</h2>
     <div class="ciphgroup">
-      <textarea ID="affine-input" class="input"></textarea>
-      <input type="text" ID="affine-formula" value="2x" class="input">
+      <textarea ID="affine-input" class="input" placeholder="Text..."></textarea>
+      <input type="text" ID="affine-formula" value="5x+1" class="input" placeholder="mx+b">
+      <input type="button" value="Cipher" ID="affine-cbutton" class="button">
+      <input type="button" value="Decipher" ID="affine-debutton" class="button">
       <div ID="affine-numbers"></div>
       <div ID="affine-output"></div>
+      <p>
+        Affine cipher requires the coefficient of x to be coprime of 26. Otherwise, letters can be ciphered into the same letters.
+      </p>
       <p>
         <q author="René Descartes">I think, therefore I am.</q>
       </p>
@@ -96,9 +101,9 @@
   </div>
   <div ID="vigenere-page" class="pages">
     <div class="text">
-      <h2 ID="vigenere">Vingenère</h2>
+      <h2 ID="vigenere">Vigenere</h2>
       <p>
-        The Vingenère Cipher is a more complex form of the Ceaser Cipher. The cipher uses a codeword to turn the input into an encoded output. The output can be deciphered using the same codeword. Every letter of the input is matched with a letter from the codeword,
+        The Vigenere Cipher is a more complex form of the Ceaser Cipher. The cipher uses a codeword to turn the input into an encoded output. The output can be deciphered using the same codeword. Every letter of the input is matched with a letter from the codeword,
         and by using the large table below, a new letter can be created for the encoded message. The same process is done for the next letter in the input and the next letter in the codeword. If the codeword runs out of characters, then it goes back
         to the beginning of the codeword and continues. The process goes on until the entire input message has been encoded and outputted.
       </p>
@@ -107,8 +112,8 @@
       </p>
     </div>
     <div class="ciphgroup">
-      <input type="text" ID="vig-key" class="input" placeholder="Key..." value="ABC">
       <textarea ID="vig-input" class="input" placeholder="Text goes here..."></textarea>
+      <input type="text" ID="vig-key" class="input" placeholder="Key..." value="ABC">
       <div ID="vig-output"></div>
       <p>
         <q author="Bertrand Russell">I would never die for my beliefs because I might be wrong</q>

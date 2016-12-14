@@ -92,7 +92,7 @@
 				var currentmatch = text[i] + '=' + text.match(regex, 'e').length;
 				current.style.height = (currentheight + 10) + 'px';
 				//console.log(("str1,str2,str3,str4".match(/,/g) || []).length);
-				console.log(text[i] + '=' + text.match(regex, 'e').length);
+				//console.log(text[i] + '=' + text.match(regex, 'e').length);
 			}
 		}
 		var resetg = function(e) {
@@ -113,19 +113,55 @@
 		var affine_output = document.getElementById("affine-output");
 		var affine_formula = document.getElementById("affine-formula");
 		var affine_numbers = document.getElementById("affine-numbers");
+		var affine_cbutton = document.getElementById("affine-cbutton");
+		var affine_debutton = document.getElementById("affine-debutton");
 
 		function affine_display(e) {
-			if (e.keyCode == 13) {
-				var etext = e.target.value.toUpperCase();
-				var elength = etext.length;
-				var cipher = affine_cipher(etext, elength);
-				affine_output.textContent = cipher;
-
-				affine_numbers.innerHTML = '';
-				for (var i = 0; i < elength; i++) {
-					affine_numbers.innerHTML += '<span>' + charpos(etext[i]) + '</span> -';
-				}
+			var etext = affine_input.value.toUpperCase();
+			var elength = etext.length;
+			var cipher = affine_cipher(etext, elength);
+			affine_output.textContent = cipher;
+			/*affine_numbers.innerHTML = '';
+			for (var i = 0; i < elength; i++) {
+				affine_numbers.innerHTML += '<span>' + charpos(etext[i]) + '</span> ';
+			}*/
+		}
+		function affine_cut() {
+			var coeff = affine_formula.value.substr(0, affine_formula.value.indexOf('x'));
+			var base = affine_formula.value.split('+')[1];
+			var nums = [ parseInt(coeff), parseInt(base) ];
+			return nums;
+		}
+		function affine_dec1() {
+			var formula = affine_cut();
+			var text = affine_input.value.toUpperCase();
+			var ainverse = modinverse( formula[0], 26 );
+			var constx = formula[1];
+			for(var i=0; i<text.length; i++) {
+				var result = ainverse * (charpos( text[i] )- constx ) % 26;
+				affine_output.textContent += String.fromCharCode( result + 65).replace(/[^A-Z]/g, ' ');
+				//console.log(i +'='+ String.fromCharCode( result + 65).replace(/[^A-Z]/g, ''))
 			}
+		}
+		var modulx = function(x, n) {
+		    return ((x%n)+n)%n;
+		};
+		function modinverse(a, b) {
+			var i = b;
+			while(b != 1) {
+				var t = b;
+				b = a%b;
+				a = t;
+			}
+			return (( (b-i)/a ) + i)%i;
+		}
+		function gcd(a, b) {
+			while(b != 0){
+				var t = b;
+				b = a % b;
+				a = t;
+			}
+			return a;
 		}
 
 		function affine_cipher(text, d) {
@@ -140,8 +176,19 @@
 			return eval(formula_str);
 		}
 
-		affine_input.addEventListener('keyup', affine_display);
-
+		affine_cbutton.addEventListener('click', function(e) {
+			affine_output.textContent = '';
+			affine_display(e);
+		});
+		affine_debutton.addEventListener('click', function(e) {
+			var cut = affine_formula.value.substr(0, affine_formula.value.indexOf('x'));
+			if( gcd( parseInt(cut), 26 ) === 1 ) {
+				affine_output.textContent = '';
+				affine_dec1(e);
+			}else {
+				affine_output.textContent = "The coefficient of x is not pseudoprime to 26";
+			}
+		});
 		//////////////////
 		//Vigenere
 		//////////////////////////////

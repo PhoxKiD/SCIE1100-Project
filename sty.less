@@ -173,8 +173,8 @@ Cesar chiper
 }
 
 @length: 650px;
-@bar-static-color: #3c3b3b;
-@bar-dynamic-color: rgba(30, 49, 180, 0.5);
+@bar-static-color: rgba(208, 101, 101, 0.56);
+@bar-dynamic-color: rgba(253, 0, 23, 0.5);
 #wrap-graph {
   position: relative;
   height: @length/2;
@@ -214,20 +214,15 @@ Cesar chiper
     right: 5%;
     width: 90%;
   }
+  &:nth-child(1) {
+    background: rgba(247, 61, 61, 0.81);
+  }
   &:nth-child(2) {
     background-color: @bar-static-color;
   }
   &:nth-child(3) {
     background-color: @bar-dynamic-color;
   }
-}
-li span:nth-child(1) {
-  height: 100px;
-  background: rgba(0, 0, 0, .5);
-}
-li span:nth-child(2) {
-  background: rgba(34, 140, 90, .5);
-  height: 100px;
 }
 /*
 Affine

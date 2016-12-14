@@ -173,19 +173,14 @@ Cesar chiper
   right: 5%;
   width: 90%;
 }
+#wrap-graph li span:nth-child(1) {
+  background: rgba(247, 61, 61, 0.81);
+}
 #wrap-graph li span:nth-child(2) {
-  background-color: #3c3b3b;
+  background-color: rgba(208, 101, 101, 0.56);
 }
 #wrap-graph li span:nth-child(3) {
-  background-color: rgba(30, 49, 180, 0.5);
-}
-li span:nth-child(1) {
-  height: 100px;
-  background: rgba(0, 0, 0, 0.5);
-}
-li span:nth-child(2) {
-  background: rgba(34, 140, 90, 0.5);
-  height: 100px;
+  background-color: rgba(253, 0, 23, 0.5);
 }
 /*
 Affine
