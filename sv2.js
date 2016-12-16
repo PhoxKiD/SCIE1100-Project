@@ -59,6 +59,8 @@
 			var text = caesar_usertext.value.replace(/[\n]/g, ' ');
 			caesar_output.textContent = caesarcipher(text, parseInt(caesar_range.value));
 			caesar_decrypt.textContent = '';
+			resetg();
+			dynamicbars(text);
 		});
 		caesar_dbutton.addEventListener('click', function(e) {
 			var text = caesar_usertext.value.replace(/[\n]/g, ' ');
@@ -81,9 +83,9 @@
 		var graf = document.getElementById('graph');
 		var resetgb = document.getElementById('reset-graph');
 		for(var i=0; i<26; i++) {
-		  graf.children[i].children[1].style.height = (freq[i]*25) + 'px';
+		  graf.children[i].children[1].style.height = (freq[i]*20) + 'px';
 		}
-		var dynamicgraf = function(e) {
+		/*var dynamicgraf = function(e) {
 			var text = e.target.value.toUpperCase().replace(/[\s]/g, '');
 			for(var i=0; i< text.length; i++) {
 				var current =	graf.children[ charpos( text[i] ) ].children[2];
@@ -94,18 +96,30 @@
 				//console.log(("str1,str2,str3,str4".match(/,/g) || []).length);
 				//console.log(text[i] + '=' + text.match(regex, 'e').length);
 			}
+		}*/
+		function dynamicbars(e) {
+			var text = e.toUpperCase();
+			var length = text.replace(/[^A-Z]/g, '').length;
+			var r = text.replace(/[A-Z]/g, function(a) {
+				var t = charpos(a);
+				var bar = graf.children[t].children[2];
+				var height = bar.offsetHeight + 1;
+				bar.style.height = height + 'px';
+				return 1;
+			});
+			for(var i=0; i<26; i++) {
+				var bar = graf.children[i].children[2];
+				var h = bar.offsetHeight;
+				bar.style.height = (h / length * 1000) + 'px';
+				if(0 != h)
+					bar.textContent = Math.round(h / length * 100) + '%';
+			}
 		}
-		var resetg = function(e) {
+		function resetg(e) {
 			for(var i=0; i<26; i++) {
 			  graf.children[i].children[2].style.height = 0;
 			}
 		}
-		caesar_usertext.addEventListener('keyup', function(e){
-			if(e.keyCode == 13) {
-				dynamicgraf(e);
-			}
-		});
-		resetgb.addEventListener('click', resetg)
 		/*
 		    Affine
 		    */
@@ -135,15 +149,16 @@
 		function affine_dec1() {
 			var formula = affine_cut();
 			var text = affine_input.value.toUpperCase();
-			var ainverse = modinverse( formula[0], 26 );
+			var ainverse = modulx(xgcd(formula[0], 26)[0], 26 );
 			var constx = formula[1];
+			console.log(ainverse);
 			for(var i=0; i<text.length; i++) {
 				var result = ainverse * (charpos( text[i] )- constx ) % 26;
 				affine_output.textContent += String.fromCharCode( result + 65).replace(/[^A-Z]/g, ' ');
 				//console.log(i +'='+ String.fromCharCode( result + 65).replace(/[^A-Z]/g, ''))
 			}
 		}
-		var modulx = function(x, n) {
+		function modulx(x, n) {
 		    return ((x%n)+n)%n;
 		};
 		function modinverse(a, b) {
@@ -153,8 +168,25 @@
 				b = a%b;
 				a = t;
 			}
-			return (( (b-i)/a ) + i)%i;
+			console.log(b+'-'+i+'/'+a);
+			//if( (b-i) < 0 ) return modulx( (b-i)a, a );
+			//return (( (b-i)/a ) + i)%i;
+			return ( (b-i)/a%i + i )%i;
 		}
+		function xgcd(a,b)
+		{
+		if (b == 0)
+			{return [1, 0, a]}
+		else
+			{
+			 temp = xgcd(b, a % b);
+			 x = temp[0];
+			 y = temp[1];
+			 d = temp[2];
+			 return [y, x-y*Math.floor(a/b), d];
+			}
+		}
+		console.log(xgcd(5,26));
 		function gcd(a, b) {
 			while(b != 0){
 				var t = b;

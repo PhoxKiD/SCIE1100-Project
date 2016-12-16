@@ -84,7 +84,7 @@ Cesar chiper
 }
 #caesar_abc,
 #caesar_ci {
-  counter-reset: enum;
+  counter-reset: enum -1;
   text-align: center;
   cursor: default;
   font-size: 2.3vw;
@@ -139,7 +139,7 @@ Cesar chiper
 #wrap-graph {
   position: relative;
   height: 325px;
-  margin: 0 auto;
+  margin: 1em auto;
 }
 #wrap-graph ul {
   list-style: none;
@@ -156,10 +156,12 @@ Cesar chiper
   width: 4%;
   font-size: 1em;
 }
+#wrap-graph li span {
+  color: white;
+}
 #wrap-graph li span.index {
   font-size: 1em;
   display: block;
-  color: white;
   z-index: 1;
   position: relative;
   top: 100%;
@@ -174,13 +176,14 @@ Cesar chiper
   width: 90%;
 }
 #wrap-graph li span:nth-child(1) {
-  background: rgba(247, 61, 61, 0.81);
+  background: #2f3da1;
 }
 #wrap-graph li span:nth-child(2) {
-  background-color: rgba(208, 101, 101, 0.56);
+  background-color: rgba(20, 170, 255, 0.5);
 }
 #wrap-graph li span:nth-child(3) {
-  background-color: rgba(253, 0, 23, 0.5);
+  background-color: rgba(47, 61, 161, 0.6);
+  font-size: .5em;
 }
 /*
 Affine

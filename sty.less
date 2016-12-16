@@ -118,7 +118,7 @@ Cesar chiper
 
 #caesar_abc,
 #caesar_ci {
-  counter-reset: enum;
+  counter-reset: enum -1;
   text-align: center;
   cursor: default;
   font-size: 2.3vw;
@@ -173,12 +173,12 @@ Cesar chiper
 }
 
 @length: 650px;
-@bar-static-color: rgba(208, 101, 101, 0.56);
-@bar-dynamic-color: rgba(253, 0, 23, 0.5);
+@bar-static-color: rgba(20, 170, 290, .5);
+@bar-dynamic-color: rgba(47, 61, 161, 0.6);
 #wrap-graph {
   position: relative;
   height: @length/2;
-  margin: 0 auto;
+  margin: 1em auto;
   ul {
     list-style: none;
     position: absolute;
@@ -197,10 +197,10 @@ Cesar chiper
 }
 
 #wrap-graph li span {
+  color: white;
   &.index {
     font-size: 1em;
     display: block;
-    color: white;
     z-index: 1;
     position: relative;
     top: 100%;
@@ -215,13 +215,14 @@ Cesar chiper
     width: 90%;
   }
   &:nth-child(1) {
-    background: rgba(247, 61, 61, 0.81);
+    background: rgba(47, 61, 161, 1);
   }
   &:nth-child(2) {
     background-color: @bar-static-color;
   }
   &:nth-child(3) {
     background-color: @bar-dynamic-color;
+    font-size: .5em;
   }
 }
 /*
